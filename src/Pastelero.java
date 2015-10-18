@@ -1,6 +1,7 @@
 
 
 
+import java.util.ArrayList;
 import java.util.concurrent.Semaphore;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -10,27 +11,31 @@ import javax.swing.JTextArea;
 
 public class Pastelero extends Thread {
 
-   private  Almacen Caja; 
-   private  Semaphore CapDisponible; 
-   private  Semaphore Ingrediente;
-   private int tiempo; 
+   private Almacen CajaH;
+   private Almacen CajaL;
+   private Almacen CajaA;
+   private ArrayList pedidos;
+   
     
     
-   Pastelero(Almacen Caja,Semaphore CapDisponible,Semaphore Ingrediente,int sleep){
-     this.Caja=Caja; 
-     this.CapDisponible=CapDisponible; 
-     this.Ingrediente=Ingrediente; 
-     this.tiempo=sleep*1000;          
+   Pastelero(Almacen H, Almacen A, Almacen L, ArrayList Lista){
+        CajaH=H;
+        CajaL=L;
+        CajaA=A;
+        pedidos=Lista;
    } 
    
    
    public void run(){
     while(true){
       try{
-         Ingrediente.acquire();
+          
+          
+          
+         /*Ingrediente.acquire();
          Caja.Agarrar();
          CapDisponible.release();
-         Thread.sleep(tiempo);
+         Thread.sleep(tiempo);*/
          
       }catch(Exception ex){}       
        

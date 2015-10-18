@@ -1,23 +1,30 @@
 
 
+import java.util.ArrayList;
+import java.util.concurrent.Semaphore;
 import javax.swing.JPanel;
 
 public class Almacen {
-    String[] Caja; 
-    int pVacia; 
-    int pLLena; 
+    public String[] Caja; 
+    public int pVacia; 
+    public int pLLena; 
+   
+    public Semaphore CapDisponible;
+    public Semaphore Ingrediente;
     
     
     
-    Almacen(String[] Caja){
-    this.Caja=Caja;     
-    pVacia=0; 
-    pLLena=0;
+    Almacen(int cant){
+        Caja = new String[cant];    
+        pVacia=0; 
+        pLLena=0;
+        
     }
     
     synchronized public void Comprar(String alimento){ //Se Agregra alimento en una posicion vacia de la caja
       Caja[pVacia]=alimento;
       pVacia= (pVacia+1) % Caja.length; 
+      
     }
     
     
