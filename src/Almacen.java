@@ -18,7 +18,8 @@ public class Almacen {
         Caja = new String[cant];    
         pVacia=0; 
         pLLena=0;
-        
+        CapDisponible = new Semaphore(cant);
+        Ingrediente = new Semaphore(0);
     }
     
     synchronized public void Comprar(String alimento){ //Se Agregra alimento en una posicion vacia de la caja

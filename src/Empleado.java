@@ -10,7 +10,17 @@ public class Empleado extends Thread{
     private JTextArea ventana;
     private int tiempo;
     private String Alimento;
+    boolean run=true;
 
+    public boolean isRun() {
+        return run;
+    }
+
+    public void setRun(boolean run) {
+        this.run = run;
+    }
+
+    
     
 
     public Empleado( Almacen Caja, JTextArea Ventana, int tiempo, String Alimento){
@@ -24,26 +34,25 @@ public class Empleado extends Thread{
 
     
     public void run(){
-            
+           
         try {
-            while(true){
-                
-                Caja.CapDisponible.acquire();
-                Thread.sleep(tiempo);
-                Caja.Comprar(Alimento);
-                Caja.Ingrediente.release();
-                ventana.append(super.getName()+" COMPRO "+Alimento+"/n");
-            }              
+                while(true){
+                    
+                    if(run){
+                        System.out.println("Entro "+Alimento);
+                        Caja.CapDisponible.acquire();
+                        Thread.sleep(tiempo);
+                        Caja.Comprar(Alimento);
+                        Caja.Ingrediente.release();
+                        ventana.append(super.getName()+" COMPRO "+Alimento+"\n");
+                    }
+                    System.out.print("");
+                }    
         } catch (InterruptedException ex) {
-           Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
-    
     }
+    
 
-    
-    
-    
-    
+  
 }
