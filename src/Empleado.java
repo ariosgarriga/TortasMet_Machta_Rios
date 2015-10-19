@@ -42,9 +42,11 @@ public class Empleado extends Thread{
                         System.out.println("Entro "+Alimento);
                         Caja.CapDisponible.acquire();
                         Thread.sleep(tiempo);
-                        Caja.Comprar(Alimento);
+                        ventana.append("SE COMPRO "+Alimento+"\n");
                         Caja.Ingrediente.release();
-                        ventana.append(super.getName()+" COMPRO "+Alimento+"\n");
+                        Caja.Comprar(Alimento);
+                        
+                        
                     }
                     System.out.print("");
                 }    
